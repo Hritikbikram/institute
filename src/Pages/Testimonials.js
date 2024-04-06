@@ -1,8 +1,14 @@
 import { Breadcrumbs, Card, CardBody, Typography} from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
+import { useGetTestimonialQuery } from '../Admin-Pages/AdminApi/CourseNameApi';
+import { baseurls } from '../Admin-Pages/AdminApi/BaseUrl';
 
 const Testimonials = () => {
+
+  const {data}=useGetTestimonialQuery();
+  console.log(data);
+
   return (
     <>
     
@@ -58,6 +64,56 @@ const Testimonials = () => {
 <div className='grid grid-cols-3 gap-7'>
               
 
+      {data && data.testimonial.map((testimoall)=>{
+        return(
+
+          
+          <div key={testimoall?._id}>
+          <Card className="w-full max-w-[26rem] shadow-lg bg-gray-50">
+              
+              <CardBody>
+
+                <div className='py-4'>
+
+                  <Typography color="blue-gray" className="font-normal text-justify">
+                  {testimoall?.TestiMsg}
+                  </Typography>
+
+                </div>
+
+                <div className="mb-3 flex items-center justify-around">
+                  
+                <img
+                                src={`${baseurls}${testimoall.TestiImage}`}
+                                alt="ui/ux review check" className='rounded-[100%] h-[30%] w-[25%]'
+                              />
+                <div>
+                  <Typography variant="h5" color="blue-gray" className="font-semibold">
+                  {testimoall?.TestiCourse}
+                  </Typography>
+                
+                  <Typography color="blue-gray" className="font-normal">
+                  {testimoall?.TestiName}
+                  </Typography>
+                
+                  <Typography color="blue-gray" className="font-normal">
+                    Training Name
+                  </Typography>
+                </div>
+                
+                </div>
+
+                
+                
+              </CardBody>
+          </Card>
+
+        </div>
+
+        )
+      })}
+              
+{/* 
               <div>
                 <Card className="w-full max-w-[26rem] shadow-lg bg-gray-50">
                     
@@ -185,51 +241,8 @@ const Testimonials = () => {
                 </Card>
 
               </div>
-              
 
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg bg-gray-50">
-                    
-                    <CardBody>
-
-                      <div className='py-4'>
-
-                        <Typography color="blue-gray" className="font-normal text-justify">
-                         "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas optio exercitationem et aliquam dicta dolorum unde voluptates deleniti ipsam. Voluptatibus reiciendis est blanditiis doloremque dolorum nam, at excepturi ipsam harum! "
-                        </Typography>
-
-                      </div>
-
-                      <div className="mb-3 flex items-center justify-around">
-                        
-                      <img
-                                      src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                      alt="ui/ux review check" className='rounded-[100%] h-[30%] w-[25%]'
-                                    />
-                      <div>
-                        <Typography variant="h5" color="blue-gray" className="font-semibold">
-                          Web Design Training
-                        </Typography>
-                      
-                        <Typography color="blue-gray" className="font-normal">
-                          @user-1
-                        </Typography>
-                      
-                        <Typography color="blue-gray" className="font-normal">
-                          Training Name
-                        </Typography>
-                      </div>
-                      
-                      </div>
-
-                      
-                      
-                    </CardBody>
-                </Card>
-
-              </div>
-
-
+ */}
 
 
 </div>

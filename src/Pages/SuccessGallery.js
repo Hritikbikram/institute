@@ -1,8 +1,14 @@
 import { Breadcrumbs, Card, CardBody, Typography} from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
 import React from 'react';
+import { useGetSuccessQuery } from '../Admin-Pages/AdminApi/CourseNameApi';
+import { baseurls } from '../Admin-Pages/AdminApi/BaseUrl';
 
 const SuccessGallery = () => {
+
+  const {data}=useGetSuccessQuery();
+  console.log(data);
+
   return (
     <>
                         
@@ -54,307 +60,73 @@ const SuccessGallery = () => {
 <div className='grid grid-cols-3 gap-7'>
 
 
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
+{data && data.SuccessStory.map((allsuccess)=>{
+  return(
+
+    
+      <div key={allsuccess?._id}>
+          <Card className="w-full max-w-[26rem] shadow-lg border-2">
+          
+
+              <div className='p-3'>  
                 
+                <img
+                  src={`${baseurls}${allsuccess?.SuccessImage}`}
+                  alt="ui/ux review check" className='rounded-[100%] w-[30%]'
+                />
 
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
               </div>
+                
+              <CardBody>
+
+                <Typography color="gray">
+                    Working on:
+                </Typography>
+
+                <Typography className="font-semibold">
+                {allsuccess?.SuccessPlace}
+                </Typography>
+
+
+              <div className='py-3'>
+
+                <Typography>
+                {allsuccess?.SuccessName}
+                </Typography>
+
+
+                <Typography>
+                {allsuccess?.SuccessJob}
+                </Typography>
+
+              </div>
+
+              <div>
+                <Typography>
+
+                {allsuccess?.SuccessDate}
+
+                </Typography>
+              </div>
+
+
+                
+                
+                
+                
+              </CardBody>
+
+              
+              
+          </Card>          
+      </div>
+
+  )
+})}
+
 
 
               
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
-
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
-              </div>
-
-
-
-
-
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
-
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
-              </div>
-
-
-
-
-
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
-
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
-              </div>
-
-
-
-
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
-
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
-              </div>
 
 
 

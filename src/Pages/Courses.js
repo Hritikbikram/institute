@@ -2,8 +2,13 @@ import { Breadcrumbs, Card, CardBody, CardFooter, CardHeader, Typography,Button}
 import { NavLink } from 'react-router-dom';
 
 import React from 'react'
+import { useGetClassQuery } from '../Admin-Pages/AdminApi/CourseNameApi';
+import { baseurls } from '../Admin-Pages/AdminApi/BaseUrl';
 
 const Courses = () => {
+
+  const {data}= useGetClassQuery();
+  console.log(data);
   return (
       
       <>
@@ -59,11 +64,14 @@ const Courses = () => {
           <div className='grid grid-cols-3 gap-7'>
 
 
-          <div>
-                          <Card className="w-full max-w-[26rem] shadow-lg">
+            {data && data.ClassesCourses.map((allcourse)=>{
+              return(
+                
+                  <div key={allcourse?._id}>
+                    <Card className="w-full max-w-[26rem] shadow-lg">
                               <CardHeader floated={false} color="blue-gray">
-                                <img
-                                  src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                <img className='h-80 w-full'
+                                  src={`${baseurls}${allcourse?.ClassImage}`}
                                   alt="ui/ux review check"
                                 />
                                 <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
@@ -72,11 +80,11 @@ const Courses = () => {
                               <CardBody>
                                 <div className="mb-3 flex items-center justify-between">
                                   <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                                    Web Design Training
+                                  {allcourse?.ClassName}
                                   </Typography>
                                 </div>
                                 <Typography color="gray">
-                                    <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
+                                    <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>{allcourse?.ClassDuration}</span>
 
 
                                 </Typography>
@@ -86,152 +94,18 @@ const Courses = () => {
                               </CardBody>
                               <CardFooter className="pt-1">
                                 <Button size="lg" fullWidth={true}>
-                                  <NavLink to="/course/details">Learn More</NavLink>
-                                
+                                <NavLink to={`/course/details/${allcourse?._id}`}>Learn More</NavLink>
                                 </Button>
                               </CardFooter>
-                          </Card>          
-                      </div>
-
-                        <div>
-                          <Card className="w-full max-w-[26rem] shadow-lg">
-                              <CardHeader floated={false} color="blue-gray">
-                                <img
-                                  src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                  alt="ui/ux review check"
-                                />
-                                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                                
-                              </CardHeader>
-                              <CardBody>
-                                <div className="mb-3 flex items-center justify-between">
-                                  <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                                    Web Design Training
-                                  </Typography>
-                                </div>
-                                <Typography color="gray">
-                                    <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
+                    </Card>
+                  </div>
 
 
-                                </Typography>
-
-                                
-                                
-                              </CardBody>
-                              <CardFooter className="pt-1">
-                                <Button size="lg" fullWidth={true}>
-                                <NavLink to="/course/details">Learn More</NavLink>
-                                </Button>
-                              </CardFooter>
-                          </Card>
-                        </div>
-
+              )
+            })}
+                        
                         
 
-
-                        <div>
-                          <Card className="w-full max-w-[26rem] shadow-lg">
-                              <CardHeader floated={false} color="blue-gray">
-                                <img
-                                  src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                  alt="ui/ux review check"
-                                />
-                                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                                
-                              </CardHeader>
-                              <CardBody>
-                                <div className="mb-3 flex items-center justify-between">
-                                  <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                                    Web Design Training
-                                  </Typography>
-                                </div>
-                                <Typography color="gray">
-                                    <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                                </Typography>
-
-                                
-                                
-                              </CardBody>
-                              <CardFooter className="pt-1">
-                                <Button size="lg" fullWidth={true}>
-                                <NavLink to="/course/details">Learn More</NavLink>
-                                </Button>
-                              </CardFooter>
-                          </Card>
-                        </div>
-
-                        
-
-                        <div>
-                          <Card className="w-full max-w-[26rem] shadow-lg">
-                              <CardHeader floated={false} color="blue-gray">
-                                <img
-                                  src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                  alt="ui/ux review check"
-                                />
-                                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                                
-                              </CardHeader>
-                              <CardBody>
-                                <div className="mb-3 flex items-center justify-between">
-                                  <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                                    Web Design Training
-                                  </Typography>
-                                </div>
-                                <Typography color="gray">
-                                    <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                                </Typography>
-
-                                
-                                
-                              </CardBody>
-                              <CardFooter className="pt-1">
-                                <Button size="lg" fullWidth={true}>
-                                <NavLink to="/course/details">Learn More</NavLink>
-                                </Button>
-                              </CardFooter>
-                          </Card>
-                        </div>
-
-                        
-
-                        <div>
-                          <Card className="w-full max-w-[26rem] shadow-lg">
-                              <CardHeader floated={false} color="blue-gray">
-                                <img
-                                  src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                  alt="ui/ux review check"
-                                />
-                                <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                                
-                              </CardHeader>
-                              <CardBody>
-                                <div className="mb-3 flex items-center justify-between">
-                                  <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                                    Web Design Training
-                                  </Typography>
-                                </div>
-                                <Typography color="gray">
-                                    <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                                </Typography>
-
-                                
-                                
-                              </CardBody>
-                              <CardFooter className="pt-1">
-                                <Button size="lg" fullWidth={true}>
-                                <NavLink to="/course/details">Learn More</NavLink>
-                                </Button>
-                              </CardFooter>
-                          </Card>
-
-                        </div>
 
 
 

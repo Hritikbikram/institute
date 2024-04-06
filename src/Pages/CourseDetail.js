@@ -1,12 +1,31 @@
 import React from 'react';
 import { Breadcrumbs, Typography,Button, Input, Checkbox, Textarea} from '@material-tailwind/react';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { useGetClassQuery, useGetClsssbyIdQuery, useGetCourseByNameQuery, useGetCourseDetailQuery, useGetCourseDetailsbyIdQuery } from '../Admin-Pages/AdminApi/CourseNameApi';
 
 const CourseDetail = () => {
+
+const {id}=useParams();
+// const {data}=useGetClsssbyIdQuery(id);
+const {data:corsnamess}=useGetClsssbyIdQuery(id);
+console.log(corsnamess);
+
+
+// console.log(data);
+const {data}=useGetCourseDetailQuery();
+console.log(data);
+
+
+
+// if(data.CourseName===id)
+// {
+//   const {isdatas:data}=useGetCourseDetailsbyIdQuery(data.CourseName);
+//   console.log(isdatas);
+// }
+
   return (
     <>
-
 
 
                     
@@ -62,7 +81,7 @@ const CourseDetail = () => {
 
 
 
-              <NavLink className='border-2 bg-blue-400 border-black text-black font-semibold text-xl p-5 rounded-lg hover:border-black hover:text-white hover:bg-blue-gray-400' to="/enquiry">Get Admission <i className="pl-2 fa-solid fa-arrow-right"></i></NavLink> 
+              <NavLink className='border-2 bg-blue-400 border-black text-black font-semibold text-xl p-5 rounded-lg hover:border-black hover:text-white hover:bg-blue-gray-400' to="/admission">Get Admission <i className="pl-2 fa-solid fa-arrow-right"></i></NavLink> 
 
               </div>
               
@@ -125,7 +144,31 @@ const CourseDetail = () => {
 
             {/* Course Description */}
             
-            
+{/*             
+      {data && data.CourseInfo.map((allcor)=>{
+
+if(allcor.CourseName===id)
+{
+  return(
+    
+    <div>
+    <h1>{allcor?.CourseName}</h1>
+    </div>
+    
+  )
+}
+else
+{
+  return( <h1>Not Found</h1> )
+}
+
+})} */}
+
+ {/* {data.CourseName === corsnamess.ClassName && data.CourseInfo.map((allcoreon)=>{
+  return(
+    <h1>{allcoreon?.CourseName}</h1>
+  )
+ })}            */}
               
               <div className='grid grid-cols-3 md:grid md:grid-cols-1 gap-5'>
 

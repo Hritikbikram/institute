@@ -6,11 +6,28 @@ import { NavLink } from 'react-router-dom';
 import OwlCarousel from 'react-owl-carousel';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
+import { useGetBlogQuery, useGetClassQuery, useGetSuccessQuery, useGetTestimonialQuery } from '../Admin-Pages/AdminApi/CourseNameApi';
+import { baseurls } from '../Admin-Pages/AdminApi/BaseUrl';
 
 
 
 
 export const Home = () => {
+
+
+
+
+  const {data:coursede}=useGetClassQuery();
+  const {data:successdet}=useGetSuccessQuery();
+  const {data:testimonialdet}=useGetTestimonialQuery();
+  const {data:blogsdat}=useGetBlogQuery();
+  
+  console.log(coursede);
+  console.log(successdet);
+  console.log(testimonialdet);
+  console.log(blogsdat);
+
+
   return (
     <div>
       <Banner />
@@ -83,15 +100,20 @@ export const Home = () => {
 
           <h1 className='text-4xl py-7 font-semibold'>Our Courses</h1>
 
+
           <div className='grid grid-cols-4 md:grid-cols-2 gap-5'>
 
+          {coursede && coursede.ClassesCourses.map((allco)=>{
+            return(
 
-            <div>
+              
+            <div key={allco?._id}>
                 <Card className="w-full max-w-[26rem] shadow-lg">
                     <CardHeader floated={false} color="blue-gray">
                       <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                        src={`${baseurls}${allco.ClassImage}`}
                         alt="ui/ux review check"
+                        className='h-60 w-full'
                       />
                       <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
                       
@@ -99,11 +121,16 @@ export const Home = () => {
                     <CardBody>
                       <div className="mb-3 flex items-center justify-between">
                         <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                          Web Design Training
+                        {allco?.ClassName}
                         </Typography>
                       </div>
                       <Typography color="gray">
-                          <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
+                          <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>{allco?.ClassDuration}</span>
+
+
+                      </Typography>
+                      <Typography color="gray">
+                          <i className="fa-solid fa-clock "></i> State: <span className='pl-1 text-sm font-medium'>{allco?.ClassState}</span>
 
 
                       </Typography>
@@ -119,148 +146,8 @@ export const Home = () => {
                 </Card>          
             </div>
 
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg">
-                    <CardHeader floated={false} color="blue-gray">
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check"
-                      />
-                      <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                      
-                    </CardHeader>
-                    <CardBody>
-                      <div className="mb-3 flex items-center justify-between">
-                        <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                          Web Design Training
-                        </Typography>
-                      </div>
-                      <Typography color="gray">
-                          <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                      </Typography>
-
-                      
-                      
-                    </CardBody>
-                    <CardFooter className="pt-1">
-                      <Button size="lg" fullWidth={true}>
-                      Learn More
-                      </Button>
-                    </CardFooter>
-                </Card>
-              </div>
-
-              
-
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg">
-                    <CardHeader floated={false} color="blue-gray">
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check"
-                      />
-                      <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                      
-                    </CardHeader>
-                    <CardBody>
-                      <div className="mb-3 flex items-center justify-between">
-                        <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                          Web Design Training
-                        </Typography>
-                      </div>
-                      <Typography color="gray">
-                          <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                      </Typography>
-
-                      
-                      
-                    </CardBody>
-                    <CardFooter className="pt-1">
-                      <Button size="lg" fullWidth={true}>
-                      Learn More
-                      </Button>
-                    </CardFooter>
-                </Card>
-              </div>
-
-              
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg">
-                    <CardHeader floated={false} color="blue-gray">
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check"
-                      />
-                      <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                      
-                    </CardHeader>
-                    <CardBody>
-                      <div className="mb-3 flex items-center justify-between">
-                        <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                          Web Design Training
-                        </Typography>
-                      </div>
-                      <Typography color="gray">
-                          <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                      </Typography>
-
-                      
-                      
-                    </CardBody>
-                    <CardFooter className="pt-1">
-                      <Button size="lg" fullWidth={true}>
-                      Learn More
-                      </Button>
-                    </CardFooter>
-                </Card>
-              </div>
-
-              
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg">
-                    <CardHeader floated={false} color="blue-gray">
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check"
-                      />
-                      <div className="to-bg-black-10 absolute inset-0 h-full w-full bg-gradient-to-tr from-transparent via-transparent to-black/60 " />
-                      
-                    </CardHeader>
-                    <CardBody>
-                      <div className="mb-3 flex items-center justify-between">
-                        <Typography variant="h5" color="blue-gray" className="font-extrabold">
-                          Web Design Training
-                        </Typography>
-                      </div>
-                      <Typography color="gray">
-                          <i className="fa-solid fa-clock "></i> Duration: <span className='pl-1 text-sm font-medium'>2 months</span>
-
-
-                      </Typography>
-
-                      
-                      
-                    </CardBody>
-                    <CardFooter className="pt-1">
-                      <Button size="lg" fullWidth={true}>
-                      Learn More
-                      </Button>
-                    </CardFooter>
-                </Card>
-
-              </div>
-
-
-
+            )
+          })}
 
 
 
@@ -312,7 +199,7 @@ export const Home = () => {
 
               <div className='rounded-3xl bg-red-300 text-white'>
 
-                <h1 className='text-6xl text-center pt-10'><i class="fa-solid fa-school hover:text-7xl duration-300"></i></h1>
+                <h1 className='text-6xl text-center pt-10'><i className="fa-solid fa-school hover:text-7xl duration-300"></i></h1>
 
                 <div className=''>
                   <h1 className='text-4xl px-[42%] font-bold pt-10 '>25</h1>
@@ -323,7 +210,7 @@ export const Home = () => {
 
               <div className='rounded-3xl bg-green-500 text-white'>
 
-                <h1 className='text-6xl text-center pt-10'><i class="fa-solid fa-graduation-cap hover:text-7xl duration-300"></i></h1>
+                <h1 className='text-6xl text-center pt-10'><i className="fa-solid fa-graduation-cap hover:text-7xl duration-300"></i></h1>
 
                 <div className=''>
                   <h1 className='text-4xl px-[42%] font-bold pt-10 '>500</h1>
@@ -353,7 +240,7 @@ export const Home = () => {
         <div className='mt-6 mx-[11%] pb-10  shadow-lg border-2 rounded-3xl'>
 
             <div className='text-center'>
-            <i class="fa-solid fa-crosshairs text-5xl pt-4 pb-10"></i>
+            <i className="fa-solid fa-crosshairs text-5xl pt-4 pb-10"></i>
               <h1 className='text-3xl py-2 font-semibold'>Success Stories</h1>
               <p className='text-xl pt-4 pb-10'>By providing valuable guidance and knowledge we inspire you to achieve professional as well as personal growth</p>
             </div>
@@ -361,185 +248,74 @@ export const Home = () => {
             <div className='grid grid-cols-3 gap-2 px-10'>
 
 
-              
+              {successdet && successdet.SuccessStory.map((stsuccess)=>{
+                return(
 
-            <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
-
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
+                  <div  key={stsuccess?._id}>
+                    <Card className="w-full max-w-[26rem] shadow-lg border-2">
                     
-                    
-                </Card>          
-              </div>
+    
+                        <div className='p-3'>  
+                          
+                          <img
+                            src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                            alt="ui/ux review check" className='rounded-[100%] w-[50%]'
+                          />
+    
+                        </div>
+                          
+                        <CardBody>
+    
+                          <Typography color="gray">
+                              Working on:
+                          </Typography>
+    
+                          <Typography className="font-semibold">
+                          {stsuccess?.SuccessPlace}
+                          </Typography>
+    
+    
+                        <div className='py-3'>
+    
+                          <Typography>
+                          {stsuccess?.SuccessName}
+                          </Typography>
+    
+    
+                          <Typography>
+                          {stsuccess?.SuccessJob}
+                          </Typography>
+    
+                        </div>
+    
+                        <div>
+                          <Typography>
+    
+                          {stsuccess?.SuccessDate}
+    
+                          </Typography>
+                        </div>
+    
+    
+                          
+                          
+                          
+                          
+                        </CardBody>
+    
+                        
+                        
+                    </Card>          
+                  </div>
+  
+
+                )
+              })}
 
 
 
 
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
 
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
-              </div>
-
-
-
-              
-
-              <div>
-                <Card className="w-full max-w-[26rem] shadow-lg border-2">
-                
-
-                    <div className='p-3'>  
-                      
-                      <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                        alt="ui/ux review check" className='rounded-[100%] w-[50%]'
-                      />
-
-                    </div>
-                      
-                    <CardBody>
-
-                      <Typography color="gray">
-                          Working on:
-                      </Typography>
-
-                      <Typography className="font-semibold">
-                          Workplace
-                      </Typography>
-
-
-                    <div className='py-3'>
-
-                      <Typography>
-                        Person Name
-                      </Typography>
-
-
-                      <Typography>
-                        Job Role
-                      </Typography>
-
-                    </div>
-
-                    <div>
-                      <Typography>
-
-                        11/23/2023
-
-                      </Typography>
-                    </div>
-
-
-                      
-                      
-                      
-                      
-                    </CardBody>
-
-                    
-                    
-                </Card>          
-              </div>
 
 
 
@@ -572,7 +348,7 @@ export const Home = () => {
 
                   
                     <div className='text-center'>
-                        <i class="fa-solid fa-crosshairs text-5xl pt-4 pb-10"></i>
+                        <i className="fa-solid fa-crosshairs text-5xl pt-4 pb-10"></i>
                         <h1 className='text-3xl py-2 font-semibold'>What Our Students Say? ? ?</h1>
                         <p className='text-xl pt-4 pb-10'>Our students are our pride who keep motivating every professionals to be a part of us in their professional journey to achieve their goals</p>
                     </div>
@@ -585,49 +361,56 @@ export const Home = () => {
                     <OwlCarousel className='owl-theme ' loop margin={10} nav>
                         
                         
-                        
-                        
-                        <div className='item py-10'>
+            {testimonialdet && testimonialdet.testimonial.map((sttestimonial)=>{
 
-                            <Card className="w-full max-w-[26rem] shadow-lg bg-gray-50 border-2">
-                                
-                                <CardBody>
+                return(
+                  
+                  <div className='item py-10' key={sttestimonial?._id}>
 
-                                  <div className='py-4'>
+                      <Card className="w-full max-w-[26rem] shadow-lg bg-gray-50 border-2">
+                          
+                          <CardBody>
 
-                                    <Typography color="blue-gray" className="font-normal text-justify">
-                                    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas optio exercitationem et aliquam dicta dolorum unde voluptates deleniti ipsam. Voluptatibus reiciendis est blanditiis doloremque dolorum nam, at excepturi ipsam harum! "
-                                    </Typography>
+                            <div className='py-4'>
 
-                                  </div>
+                              <Typography color="blue-gray" className="font-normal text-justify">
+                             {sttestimonial?.TestiMsg}
+                              </Typography>
 
-                                  <div className="mb-3 flex items-center justify-around">
-                                    
-                                  <div>
-                                    <Typography variant="h5" color="blue-gray" className="font-semibold">
-                                      Web Design Training
-                                    </Typography>
-                                  
-                                    <Typography color="blue-gray" className="font-normal">
-                                      @user-1
-                                    </Typography>
-                                  
-                                    <Typography color="blue-gray" className="font-normal">
-                                      Training Name
-                                    </Typography>
-                                  </div>
-                                  
-                                  </div>
+                            </div>
 
-                                  
-                                  
-                                </CardBody>
-                            </Card>
+                            <div className="mb-3 flex items-center justify-around">
+                              
+                            <div>
+                              <Typography variant="h5" color="blue-gray" className="font-semibold">
+                                {sttestimonial?.TestiCourse}
+                              </Typography>
                             
-                        </div>
+                              <Typography color="blue-gray" className="font-normal">
+                                {sttestimonial?.TestiName}
+                              </Typography>
+                            
+                              <Typography color="blue-gray" className="font-normal">
+                              {sttestimonial?.TestiCourse}
+                              </Typography>
+                            </div>
+                            
+                            </div>
+
+                            
+                            
+                          </CardBody>
+                      </Card>
+                      
+                  </div>
+                )
+
+            }) }
                         
                         
-                                      
+                        
+                        
+{/*                                       
                         <div className='item py-10'>
 
                             <Card className="w-full max-w-[26rem] shadow-lg bg-gray-50 border-2">
@@ -785,7 +568,7 @@ export const Home = () => {
                                 </CardBody>
                             </Card>
                             
-                        </div>
+                        </div> */}
                         
                         
                         
@@ -843,6 +626,91 @@ export const Home = () => {
 
         </div>
 
+
+          {/* Subscribe End */}
+
+          
+      {/* Blogs */}
+
+
+      <div className='px-[10%]  py-[1%]'>
+
+        <h1  className='text-3xl font-bold pb-[5%] text-center'>Our Blogs</h1>
+
+          <div className='grid gap-4 grid-cols-3  md:grid md:grid-cols-2'>
+
+
+          {blogsdat && blogsdat.blog.map((blogdet)=>{
+
+
+
+              return(
+
+                            
+                <div className='my-10' key={blogdet?._id}>
+
+
+                  <Card className='mt-6 w-96 overflow-hidden'>
+
+                      <CardHeader floated={false}
+                        shadow={false}
+                        color="transparent"
+                        className="relative h-56 m-0 rounded-none">
+                        
+                      <img src={`${baseurls}${blogdet.BlogImage}`} alt='Blog pic'    className="object-cover" />
+
+                      </CardHeader>
+
+
+                      <CardBody className='pt-8'>
+
+                        <Typography variant="h4" color="blue-gray">
+                        {blogdet?.BlogName}
+                        </Typography>
+
+                        <Typography variant="lead" color="gray" className="mt-3 pt-4 font-normal">
+                        {blogdet?.BlogContent}
+                        </Typography>
+
+
+                      </CardBody>
+
+                      <CardFooter>
+                        
+                        <NavLink className="hover:text-orange-600 duration-500 text-lg"
+                        
+                        to={`/single_blog/${blogdet?._id}`} >Read More</NavLink>
+
+                      </CardFooter>
+
+
+
+
+                  </Card>
+
+                </div>
+
+              )
+
+
+
+
+          })}
+
+
+
+
+          </div>
+
+          
+          <div className='mt-[8%] mb-12 text-center'>
+           <NavLink className='border-2 border-blue-800 text-blue-800 font-semibold text-3xl p-5 rounded-lg' to="/blog">Our Blogs <i className="pl-2 fa-solid fa-arrow-right"></i></NavLink>        
+         </div>
+      </div>
+
+
+
+      {/* Blogs End */}
 
 
 

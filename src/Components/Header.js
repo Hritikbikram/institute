@@ -35,6 +35,12 @@ const Header = () => {
 
         <NavLink className="hover:text-orange-300 duration-200"  to='/course'>All Courses <i className="fa-solid fa-chevron-down px-2"></i></NavLink>
         
+        <NavLink className="hover:text-orange-300 duration-200" to='/admission'>Admission </NavLink>
+        
+        <NavLink className="hover:text-orange-300 duration-200" to='/blog'>Blogs</NavLink>
+ 
+        <NavLink className="hover:text-orange-300 duration-200" to='/enquiry'>Enquiries </NavLink>
+        
         <NavLink className="hover:text-orange-300 duration-200" 
          to='/contact'>Contact Us </NavLink>
 

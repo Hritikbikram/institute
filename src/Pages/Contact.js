@@ -2,9 +2,53 @@ import React from 'react';
 import contact from '../Images/contact.png';
 import { Breadcrumbs, Button, Input, Textarea } from '@material-tailwind/react';
 import { NavLink } from 'react-router-dom';
+import { useCreateContactMutation } from '../Admin-Pages/AdminApi/CourseNameApi';
+import { useFormik } from 'formik';
 
 
 const Contact = () => {
+  
+  const [createContactForms]=useCreateContactMutation()
+
+  const formik = useFormik({
+    initialValues: {
+      conname: "",
+      conmail: "",
+      conphone: "",
+      consub: "",
+      conmsg: "",
+    },
+    // validationSchema: registerSchema,
+
+    onSubmit: async (values) => {
+      try {
+
+
+
+        const formData = new FormData();
+        formData.append('conname', values?.conname);
+        formData.append('conmail', values.conmail);
+        formData.append('conphone', values.conphone);
+        formData.append('consub', values.consub);
+        formData.append('conmsg', values.conmsg);
+        console.log(values);
+     
+
+        const result = await createContactForms(formData).unwrap();
+        formik.resetForm();
+        // if ((result.status) === 'success') {
+        //   toast.success(result.message);
+        //   nav('/login');
+        // } else {
+        //   toast.error(result.message);
+        // }
+      } catch (e) {
+        // toast.error(`${e}`);
+      }
+      
+    }
+  });
+  
   return (
 
     <>
@@ -118,32 +162,32 @@ const Contact = () => {
                   <h1 className='text-3xl font-bold py-5'>Get In Touch</h1>
                   <p className='text-lg '>Please fill up the form to submit your queries and get in touch with us ! ! !</p>
 
-                  <form className='py-[2%]' >
+                  <form className='py-[2%]' onSubmit={formik.handleSubmit}>
 
 
                     <div className='py-5'>
-                      <Input label="Your Name" name="conname" className='rounded-3xl py-10' type='text' />
+                      <Input label="Your Name" name="conname" className='rounded-3xl py-10' type='text' onChange={formik.handleChange} value={formik.values.conname} />
                     </div>
 
 
                     <div className='py-5'>
-                      <Input label="Your Email" name="conmail" className='rounded-3xl py-10' type='email' />
+                      <Input label="Your Email" name="conmail" className='rounded-3xl py-10' type='email' onChange={formik.handleChange} value={formik.values.conmail} />
                     </div>
 
 
                     <div className='py-5'>
-                      <Input label="Phone Number" name="conphone" className='rounded-3xl py-10' type='number'  />
+                      <Input label="Phone Number" name="conphone" className='rounded-3xl py-10' type='number' onChange={formik.handleChange} value={formik.values.conphone}  />
                     </div>
 
 
                     <div className='py-5'>
-                      <Input label="Subject" name="consub" className='rounded-3xl py-10' type='text' />
+                      <Input label="Subject" name="consub" className='rounded-3xl py-10' type='text' onChange={formik.handleChange} value={formik.values.consub} />
                     </div>
 
 
                     <div className='py-5'>
 
-                      <Textarea  label="Your Message" name="conmsg" className='rounded-3xl py-10' type='text'  ></Textarea>
+                      <Textarea  label="Your Message" name="conmsg" className='rounded-3xl py-10' type='text' onChange={formik.handleChange} value={formik.values.conmsg}  ></Textarea>
                     </div>
 
                     <Button type='submit'>Submit</Button>
