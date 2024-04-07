@@ -8,6 +8,16 @@ export const UserApi = createApi({
   endpoints: (builder) => ({
     //Create Course State
 
+    registerUser: builder.mutation({
+      query: (query) => ({
+        url: "api/admin-register",
+        method: "POST",
+
+        body: query,
+      }),
+      // invalidatesTags: ["Course"],
+    }),
+
     loginUser: builder.mutation({
       query: (query) => ({
         url: "api/login",
@@ -18,4 +28,5 @@ export const UserApi = createApi({
   }),
 });
 
-export const { useLoginUserMutation } = UserApi;
+export const { useRegisterUserMutation,useLoginUserMutation } = UserApi;
+// export const {useLoginUserMutation } = UserApi;

@@ -31,9 +31,12 @@ import BlogSingle from './Pages/BlogSingle';
 import AdminClassEnt from './Admin-Pages/AdminClassEnt';
 import EnquiryDetail from './Admin-Pages/Admin-Details/EnquiryDetail';
 import UpCourseDetails from './Admin-Pages/Admin-Update/UpCourseDetails';
-import Users from './Admin-Pages/Users';
+// import Users from './Admin-Pages/Users';
 import UpUsers from './Admin-Pages/Admin-Update/UpUsers';
 import AdminLogin from './Admin-Pages/AdminLogin';
+import Login from './Admin-Pages/Login';
+import UserAuth from './ProtectedRoute/UserAuth';
+import Register from './Admin-Pages/Register';
 
 const App = () => {
   return (
@@ -43,12 +46,19 @@ const App = () => {
       
         <Routes>
 
-        <Route path='/admin' element={<AdminLogin />}/>
+        {/* <Route path='/admin' element={<AdminLogin />}/>
 
-        
+        <Route path='/admin/home' element={<AdminHome />}/> */}
 
 
-        <Route path='/admin/home' element={<AdminHome />}/>
+        <Route element={<UserAuth />}>
+          <Route path="/admin/" element={<AdminHome />} />
+        </Route>
+        <Route path="/admin/login" element={<Login />} />
+        <Route path="/admin/register" element={<Register />} />
+
+
+
         <Route path='/admin/coursestate_update' element={<UpCourseState />}/>
 
         <Route path='/admin/about' element={<AdminAbout />}/>
@@ -81,7 +91,7 @@ const App = () => {
         <Route path='/admin/blog' element={<AdminBlog />}/>
         <Route path='/admin/blog_update/:id' element={<UpBlogs />}/>
         
-        <Route path='/admin/users' element={<Users />}/>
+        {/* <Route path='/admin/users' element={<Users />}/> */}
         <Route path='/admin/users_update' element={<UpUsers />}/>
 
 
